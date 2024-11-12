@@ -1,0 +1,24 @@
+---
+import Layout from "./Layout.astro";
+import Footer from "../components/Footer.astro";
+import {readingDuration} from "../utils/string"
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <div class="post-header">
+    <h1>{frontmatter.title}</h1>
+    <div class="post-meta">
+      Published on {frontmatter.pubDate.toString().slice(0, 10)}
+      <div class="tags">
+        <a class="tag">React</a>
+        <a class="tag">Next.js</a>
+        <a class="tag">Performance</a>
+      </div>
+    </div>
+  </div> 
+  <div class="post-content">
+    <slot />
+  </div>
+  <Footer/>
+</Layout>

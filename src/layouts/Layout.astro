@@ -1,6 +1,8 @@
 ---
+import Header from "../components/Header.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,43 +10,313 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main class="page-content">
+      <slot />
+    </main>
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --text-color: #98c379; /* Soft green */
+    --bg-color: #282c34; /* Soft dark background */
+    --link-color: #61afef; /* Soft blue */
+
+    /* 4-point grid system variables */
+    --space-1: 4px; /* 4px */
+    --space-2: 8px; /* 8px */
+    --space-3: 12px; /* 12px */
+    --space-4: 16px; /* 16px */
+    --space-5: 20px; /* 20px */
+    --space-6: 24px; /* 24px */
+    --space-7: 28px; /* 28px */
+    --space-8: 32px; /* 32px */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Courier New", Courier, monospace;
+    color: var(--text-color);
+  }
+
+  body {
+    background-color: var(--bg-color);
+    padding: var(--space-4);
+    line-height: var(--space-6);
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  .terminal {
+    border: 1px solid #4b5263;
+    padding: var(--space-6);
+    height: calc(100vh - var(--space-8));
+    overflow-y: auto;
+  }
+
+  .prompt {
+    margin-bottom: var(--space-5);
+  }
+
+  .prompt::before {
+    content: "enjinil.xyz:~$ ";
+    color: #c678dd;
+  }
+
+  .cursor {
+    animation: blink 1s infinite;
+    display: inline-block;
+    width: var(--space-1);
+    height: var(--space-4);
+    background-color: var(--text-color);
+    margin-left: var(--space-1);
+    opacity: 0.8;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  nav {
+    margin: var(--space-4) 0;
+  }
+
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+
+  section {
+    display: none;
+    margin-top: var(--space-6);
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .command-output {
+    margin: var(--space-3) 0;
+    color: #abb2bf;
+  }
+
+  h2 {
+    margin-bottom: var(--space-3);
+    color: #e5c07b;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    margin: var(--space-1) 0;
+    padding: var(--space-1) 0;
+  }
+
+  p + p {
+    margin-top: var(--space-3);
+  }
+
+  .section-content {
+    margin-top: var(--space-4);
+  }
+
+  .blog-date {
+    display: inline-block;
+    width: var(--space-8);
+    margin-right: var(--space-2);
+    color: #c678dd;
+  }
+
+  .command-output ul li {
+    padding-left: var(--space-3);
+    position: relative;
+  }
+
+  .command-output ul li:before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #4b5263;
+  }
+
+  /* Navigation list specific styling */
+  nav .command-output ul {
+    margin-top: var(--space-2);
+  }
+
+  nav .command-output ul li {
+    margin: var(--space-2) 0;
+  }
+
+  .page-content h1,
+  .page-content h2,
+  .page-content h3 {
+    margin-bottom: var(--space-5);
+
+    &:not(:first-child) {
+      margin-top: var(--space-6);
+    }
+  }
+
+  .page-content h1 {
+    color: #e5c07b;
+    margin-bottom: var(--space-3);
+  }
+
+  .post-header {
+    padding: var(--space-3) 0;
+  }
+
+  .post-meta {
+    margin: var(--space-2) 0;
+    color: #c678dd;
+    font-size: 0.9em;
+  }
+
+  .post-content p {
+    margin: var(--space-4) 0;
+  }
+
+  .post-content code {
+    background: #3e4451;
+    padding: var(--space-1) var(--space-2);
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  .post-content pre {
+    background: #3e4451;
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    overflow-x: auto;
+    border-radius: 4px;
+  }
+
+  .post-content pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-7);
+  }
+
+  .post-content ul p:first-child,
+  .post-content ol p:first-child {
+    margin: 0;
+  }
+
+  .post-content li {
+    margin: var(--space-2) 0;
+  }
+
+  .post-footer {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid #4b5263;
+  }
+
+  .post-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .post-nav a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  .post-nav a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--space-2) 0;
+  }
+
+  .tag {
+		line-height: 1;
+    background: #3e4451;
+    padding: var(--space-1) var(--space-2);
+    border-radius: 3px;
+    margin-right: var(--space-2);
+    font-size: 0.9em;
+    border: 1px solid transparent;
+    color: var(--text-color);
+  }
+
+  .tag:hover,
+  .tag:focus {
+    border-color: currentColor;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    margin-right: var(--space-4);
+  }
+
+  header ul {
+    display: flex;
+  }
+
+  header li {
+    margin-right: var(--space-3);
+  }
+
+  footer {
+    padding-top: var(--space-6);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-4);
+
+  }
+  
+  footer ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  footer li {
+    margin-right: var(--space-4);
+  }
 </style>
