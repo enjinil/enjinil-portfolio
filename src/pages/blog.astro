@@ -4,7 +4,7 @@ const allPosts = await Astro.glob("./posts/*.md");
 ---
 
 <Layout title="/blog">
-  <div class="prompt">cat blog.txt</div>
+  <div class="prompt">cd /blog</div>
   <div>
     <h2>Posts</h2>
     <div class="section-content">
@@ -17,7 +17,7 @@ const allPosts = await Astro.glob("./posts/*.md");
                   {post.frontmatter.title}
                 </a>
                 <div class="post-item-tags">
-                  {post.frontmatter.tags.map((tag) => (
+                  {post.frontmatter.tags?.map((tag) => (
                     <a href={`/blog-${tag}`} class="tag">{tag}</a>
                   ))}
                 </div>

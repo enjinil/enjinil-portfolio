@@ -209,6 +209,7 @@ const { title } = Astro.props;
   }
 
   .page-content h1 {
+    line-height: 1.2;
     color: #e5c07b;
     margin-bottom: var(--space-3);
   }
@@ -218,7 +219,6 @@ const { title } = Astro.props;
   }
 
   .post-meta {
-    margin: var(--space-2) 0;
     color: #c678dd;
     font-size: 0.9em;
   }
@@ -326,7 +326,8 @@ const { title } = Astro.props;
   }
 
   header li {
-    margin-right: var(--space-3);
+    margin: 0 var(--space-3) 0 0;
+    padding: 0;
   }
 
   footer {
