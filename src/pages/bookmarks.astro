@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import * as bookmarksMd from "../markdowns/bookmarks.md";
+---
+
+<Layout title="/bookmarks">
+  <div class="prompt">cd /bookmarks</div>
+  <div>
+    <h2>{bookmarksMd.frontmatter.title}</h2>
+    <div class="post-content">
+      <bookmarksMd.Content />
+    </div>
+  </div>
+</Layout>
+
+
