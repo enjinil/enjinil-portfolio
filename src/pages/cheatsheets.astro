@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import * as cheatsheetsMd from "../markdowns/cheatsheets.md";
+---
+
+<Layout title="/cheatsheets">
+  <div class="prompt">cd /cheatsheets</div>
+  <div>
+    <h2>{cheatsheetsMd.frontmatter.title}</h2>
+    <div class="content">
+      <cheatsheetsMd.Content />
+    </div>
+  </div>
+</Layout>
+
+
