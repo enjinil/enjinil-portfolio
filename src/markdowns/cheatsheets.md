@@ -2,4 +2,4 @@
 title: Cheatsheets
 ---
 
-- [Docker Chaetsheet](/resources/cheatsheets/Docker_Cheatsheet.svg)
+- [Docker](/resources/cheatsheets/Docker_Cheatsheet.svg)
