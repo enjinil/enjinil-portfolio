@@ -1,0 +1,19 @@
+---
+import Layout from "./Layout.astro";
+import Footer from "../components/Footer.astro";
+import {readingDuration} from "../utils/string"
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <div class="project-header">
+    <h1>{frontmatter.name}</h1>
+  </div> 
+  <div class="project-thumbnail">
+    <img src={frontmatter.thumbnail} alt={frontmatter.title} />
+  </div>
+  <div class="content">
+    <slot />
+  </div>
+  <Footer/>
+</Layout>
